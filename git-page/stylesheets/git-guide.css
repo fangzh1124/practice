@@ -1,0 +1,81 @@
+/* line 1, ../sass/git-guide.scss */
+body {
+  text-align: center;
+  font-size: 30px;
+}
+
+/* line 6, ../sass/git-guide.scss */
+h1 {
+  font-size: 60px;
+  font-weight: normal;
+  font-family: 'Chelsea Market', Georgia, serif;
+  margin: 20px 0;
+}
+
+/* line 13, ../sass/git-guide.scss */
+p {
+  line-height: 2;
+  width: 960px;
+  margin: auto;
+}
+
+/* line 19, ../sass/git-guide.scss */
+span {
+  color: #FFF;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+/* line 26, ../sass/git-guide.scss */
+a, a:active {
+  color: black;
+  text-decoration: none;
+}
+/* line 29, ../sass/git-guide.scss */
+a:hover, a:active:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+/* line 35, ../sass/git-guide.scss */
+.scrollblock {
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+/* line 40, ../sass/git-guide.scss */
+.block-setup {
+  background-color: #348fd4;
+  color: #06406C;
+}
+/* line 44, ../sass/git-guide.scss */
+.block-setup a {
+  background-color: #06406C;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+/* line 52, ../sass/git-guide.scss */
+.block-create {
+  color: white;
+  background-color: #06406c;
+}
+
+/* line 57, ../sass/git-guide.scss */
+.block-trees {
+  color: #d3b2af;
+  background-color: #4c0d09;
+}
+/* line 60, ../sass/git-guide.scss */
+.block-trees span {
+  color: #000;
+  background-color: #FFF;
+}
+
+/* line 66, ../sass/git-guide.scss */
+.block-add {
+  color: #4c0d09;
+  background-color: #cc4037;
+}
