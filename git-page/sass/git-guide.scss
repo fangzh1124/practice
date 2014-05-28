@@ -1,0 +1,69 @@
+body {
+	text-align: center;
+	font-size: 30px;	
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: normal;
+	font-family: 'Chelsea Market', Georgia, serif;
+	margin: 20px 0;
+}
+
+p {
+	line-height: 2;
+	width: 960px;	
+	margin: auto;	
+}
+
+span {
+	color: #FFF;
+	background-color: #000;
+	border-radius: 10px;
+	padding: 5px 15px;
+}
+
+a, a:active {
+	color: black;
+	text-decoration: none;
+	&:hover {
+		color:red;
+		text-decoration: underline;
+	}
+}
+
+.scrollblock {
+	padding-top:20px;
+	padding-bottom: 50px; 
+}
+
+.block-setup {
+	background-color: #348fd4;
+	color: #06406C;
+
+	a {
+		background-color: #06406C;
+		color: white;
+		border-radius: 10px;
+		padding: 5px 15px;
+	}
+}
+
+.block-create {
+	color: white;
+	background-color:#06406c;
+}
+
+.block-trees {
+	color: #d3b2af;
+	background-color: #4c0d09;
+	span {
+		color: #000;
+		background-color: #FFF;	
+	}
+}
+
+.block-add {
+	color: #4c0d09;
+	background-color: #cc4037;
+}
