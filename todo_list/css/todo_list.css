@@ -1,0 +1,53 @@
+/* line 1, ../sass/todo_list.scss */
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding: 5px;
+  color: white;
+  background: #bbada0;
+}
+
+/* line 9, ../sass/todo_list.scss */
+#textbox {
+  height: 25px;
+  width: 200px;
+  font-size: 1em;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* line 15, ../sass/todo_list.scss */
+.todo_note {
+  width: 400px;
+  margin: 20px auto;
+  border: 5px solid #bbada0;
+  border-radius: 6px;
+  text-align: center;
+  background: #faf8ef;
+}
+/* line 23, ../sass/todo_list.scss */
+.todo_note .todo_list {
+  padding: 20px 0;
+  margin: 0;
+}
+/* line 26, ../sass/todo_list.scss */
+.todo_note .todo_list li {
+  list-style-type: none;
+  color: #f9f6f2;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 5px 90px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #f1d04b;
+  text-align: left;
+  word-break: break-word;
+}
+/* line 38, ../sass/todo_list.scss */
+.todo_note .todo_list li.item_done {
+  text-decoration: line-through;
+  list-style-type: none;
+  color: #7A7A7A;
+  font-style: italic;
+  background-color: #f68d53;
+}
