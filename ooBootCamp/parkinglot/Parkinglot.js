@@ -1,28 +1,70 @@
 // Test Part
 var should = require('chai').should();
 
-describe("Parkinglot", function() {
-	var parkinglot = new Parkinglot(1);
+describe("ParkingLot", function() {
+	var parkingLot = new ParkingLot(1);
 	var car1 = new Car();
 	var car2 = new Car();
 	var ticket = new Ticket();
+	var parkingBoy = new ParkingBoy();
 
-	it('should store a car when given a car', function(){
-		parkinglot.pickCar(parkinglot.storeCar(car1)).should.equals(car1);
+	
+	it('should pick the same car when stored a car', function(){
+		parkingLot.pickCar(parkingLot.storeCar(car1)).should.equals(car1);
 	});
 
-	it('should return nothing given a car when parkinglot is full', function(){
-			parkinglot.storeCar(car2).should.equals('');
-		});
+	it('should return nothing given a car when parkingLot is full', function(){
+		parkingLot.storeCar(car1);
+		parkingLot.storeCar(car2).should.equals('');
+	});
 
 	it('should return nothing given a ticket when ticket is not valid', function(){
-		parkinglot.pickCar(ticket).should.equals('');
+		parkingLot.pickCar(ticket).should.equals('');
+	});
+
+	//ParkingBoy
+	it('should pick the same car when stored a car by a parkingBoy', function(){
+		var parkingBoy = new ParkingBoy();
+		var parkingLot1 = new ParkingLot(1);
+		var parkingLot2 = new ParkingLot(1);
+		parkingBoy.addParkingLot(parkingLot1);
+		parkingBoy.addParkingLot(parkingLot2);
+		var car = new Car();
+
+		parkingBoy.pickCar(parkingBoy.storeCar(car)).should.equals(car);
+
 	});
 });
 
-
 // Solution Part
-function Parkinglot(size){
+function ParkingBoy(){
+	this.parkingLots = [];
+
+	this.addParkingLot = function(parkingLot){
+		this.parkingLots.push(parkingLot);
+	}
+	this.storeCar = function(car){
+		var ticket = '';
+		for (var i = 0; i < this.parkingLots.length; i++) {
+			if(ticket = this.parkingLots[i].storeCar(car)){
+				break;
+			}
+		}
+		return ticket;
+	}
+
+	this.pickCar = function(ticket){
+		var car = '';
+		for (var i = 0; i < this.parkingLots.length; i++) {
+			if(car = this.parkingLots[i].pickCar(ticket)){
+				break;
+			}
+		}
+		return car;
+	}
+}
+
+function ParkingLot(size){
 	this.size = size;
 	this.cars = [];
 
@@ -36,7 +78,15 @@ function Parkinglot(size){
 	}
 
 	this.pickCar = function(ticket){
-		return '';
+		var results = this.cars.filter(function (carWithTicket, i) {
+	    return carWithTicket[0] === ticket;
+	  });
+
+	  if (results.length > 0) {
+	    var index = this.cars.indexOf(results[0]);
+	    return this.cars.splice(index, 1)[0][1];
+	  }
+	  return '';
 	}
 };
 
