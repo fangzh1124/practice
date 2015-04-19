@@ -96,7 +96,7 @@ describe("ParkingLot", function() {
 
 // Super Parking Boy
 function SuperParkingBoy(parkinglots){
-	this.parkingLots = parkinglots;
+	SmartParkingBoy.call(this, parkinglots);
 
 	this.getMostFreeParkingLot = function(){
 		var mostFreeParkingLot = '';
@@ -118,21 +118,11 @@ function SuperParkingBoy(parkinglots){
 		}
 		return ticket;
 	}
-
-	this.pickCar = function(ticket){
-		var car = '';
-		for (var i = 0; i < this.parkingLots.length; i++) {
-			if(car = this.parkingLots[i].pickCar(ticket)){
-				break;
-			}
-		}
-		return car;
-	}
 }
 
 // Smart Parking Boy
 function SmartParkingBoy(parkinglots){
-	this.parkingLots = parkinglots;
+	ParkingBoy.call(this, parkinglots);
 
 	this.getMostAvailableParkingLot = function(){
 		var mostAvailableParkingLot = '';
@@ -154,25 +144,11 @@ function SmartParkingBoy(parkinglots){
 		}
 		return ticket;
 	}
-
-	this.pickCar = function(ticket){
-		var car = '';
-		for (var i = 0; i < this.parkingLots.length; i++) {
-			if(car = this.parkingLots[i].pickCar(ticket)){
-				break;
-			}
-		}
-		return car;
-	}
 }
 
 // Parking Boy
 function ParkingBoy(parkinglots){
 	this.parkingLots = parkinglots;
-
-	// this.addParkingLot = function(parkingLot){
-	// 	this.parkingLots.push(parkingLot);
-	// }
 
 	this.storeCar = function(car){
 		var ticket = '';
@@ -185,14 +161,14 @@ function ParkingBoy(parkinglots){
 	}
 
 	this.pickCar = function(ticket){
-		var car = '';
-		for (var i = 0; i < this.parkingLots.length; i++) {
-			if(car = this.parkingLots[i].pickCar(ticket)){
-				break;
-			}
-		}
-		return car;
-	}
+     var car = '';
+     for (var i = 0; i < this.parkingLots.length; i++) {
+       if(car = this.parkingLots[i].pickCar(ticket)){
+         break;
+       }
+     }
+     return car;
+   }
 }
 
 // Parking Lot
