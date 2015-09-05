@@ -61,7 +61,7 @@ describe("ParkingLot", function() {
 
 
 
-	// Super Parking Boy
+	// Super Parking Boy Tests
 	it('should pick the same car when stored a car by a super parking Boy', function(){
 		var superParkingBoy = new SuperParkingBoy([new ParkingLot(1)]);
 		var car = new Car();
@@ -87,16 +87,100 @@ describe("ParkingLot", function() {
 		highFreeRateParkingLot.pickCar(superParkingBoy.storeCar(car)).should.equals(car);
 	});
 
+
+	// MBA Parking Boy Tests
+	it('should pick the same car when stored a car by MBA Parking Boy himself', function(){
+		var parkingBoys = [new ParkingBoy([new ParkingLot(0)])];
+		var parkinglots = [new ParkingLot(1)];
+		var mbaParkingBoy = new MBAParkingBoy(parkingBoys, parkinglots);
+
+		var car = new Car();
+		var ticket = mbaParkingBoy.storeCar(car);
+
+		parkinglots[0].pickCar(ticket).should.equals(car);
+	});
+
+	it('should pick the same car when stored a car by Parking Boy managed by MBA Parking Boy', function(){
+		var parkingBoys = [new ParkingBoy([new ParkingLot(1)])];
+		var parkinglots = [new ParkingLot(1)];
+		var mbaParkingBoy = new MBAParkingBoy(parkingBoys, parkinglots);
+		
+		var car = new Car();
+		var ticket = mbaParkingBoy.storeCar(car);
+
+		parkingBoys[0].pickCar(ticket).should.equals(car);
+	});
+
+
+	// Report Test
+	// M 10 15
+	// 	P 3 4
+	// 	B 1 2
+	// 		P 1 2
+	// 	B 6 9
+	// 		P 4 4
+	// 		P 2 5 
+	it('should report 1 out of 1 given a one size parkinglot with no car parked', function(){
+		var parkinglots = [new ParkingLot(1)];
+		var result = parkinglots[0].report();
+
+		result.should.equals([1,1]);
+	});
+
+
 });
+
 
 
 
 
 // Solution Part
 
+// MBA Parking Boy 
+function MBAParkingBoy(parkingBoys, parkingLots){
+	ParkingBoy.call(this, parkingLots);
+	this.parkingBoys = parkingBoys;
+
+	this.storeCar = function(car){
+		var ticket = '';
+		for (var i = 0; i < this.parkingBoys.length; i++){
+			for(var j = 0; j < this.parkingBoys[i].parkingLots.length; j++){
+				if(ticket = this.parkingBoys[i].parkingLots[j].storeCar(car)){
+					return ticket;
+				}
+			}	
+		}
+		for (var i = 0; i < this.parkingLots.length; i++) {
+			if(ticket = this.parkingLots[i].storeCar(car)){
+				break;
+			}
+		}	
+		return ticket;
+	}
+
+	this.pickCar = function(ticket){
+		var car = '';
+		for (var i = 0; i < this.parkingBoys.length; i++){
+			for(var j = 0; j < this.parkingBoys[i].length; j++ ){
+				if(car = this.parkingBoys[i][j].pickCar(ticket)){
+					return car;
+				}
+			}
+		}
+	 	for (var i = 0; i < this.parkingLots.length; i++) {
+	   	if(car = this.parkingLots[i].pickCar(ticket)){
+	    	break;
+	   	}
+	 	}
+	 	return car;
+	}
+}
+
+
+
 // Super Parking Boy
 function SuperParkingBoy(parkinglots){
-	SmartParkingBoy.call(this, parkinglots);
+	ParkingBoy.call(this, parkinglots);
 
 	this.getMostFreeParkingLot = function(){
 		var mostFreeParkingLot = '';
@@ -161,14 +245,22 @@ function ParkingBoy(parkinglots){
 	}
 
 	this.pickCar = function(ticket){
-     var car = '';
-     for (var i = 0; i < this.parkingLots.length; i++) {
-       if(car = this.parkingLots[i].pickCar(ticket)){
-         break;
-       }
-     }
-     return car;
+	  var car = '';
+	  for (var i = 0; i < this.parkingLots.length; i++) {
+	    if(car = this.parkingLots[i].pickCar(ticket)){
+	      break;
+	    }
+	  }
+	  return car;
    }
+
+	this.report = function(){
+		var reportList = [];
+		for(var i = 0; i < this.parkingLots.length; i++){
+			reportList.push(parkingLots.report());
+		}
+		return reportList;
+	}
 }
 
 // Parking Lot
@@ -203,6 +295,10 @@ function ParkingLot(size){
 
 	this.freeRate = function(){
 		return this.availableSpace() / this.size;
+	}
+
+	this.report = function(){
+		return [this.availableSpace(),this.size];
 	}
 
 };
