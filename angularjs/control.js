@@ -1,3 +1,11 @@
+// 	(function(){
+// 		var app = angular.module('todoApp',[]);
+// 		
+// 		app.controller('TodoListController', function(){
+// 			
+// 		});
+// 	})();
+//
 angular.module('todoApp',[])
 	.controller('TodoListController', function() {
 		var todoList = this;
